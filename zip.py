@@ -3,8 +3,8 @@ import backtrader as bt
 import pytz
 from datetime import datetime
 
-ALPACA_KEY_ID = "PK52ROBY9AUL49LRCBBP"
-ALPACA_SECRET_KEY = "IqlIvevEv2l1rihn6Bg7S8JaJhYsHxMKuOxw4l3k"
+ALPACA_KEY_ID = ""
+ALPACA_SECRET_KEY = ""
 ALPACA_PAPER = True
 
 fromdate = datetime(2020,8,5)
