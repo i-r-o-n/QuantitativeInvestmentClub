@@ -1,5 +1,5 @@
 import random
-from FCFE import Stock
+from Archive.FCFE import Stock
 import matplotlib.pyplot as plt
 import numpy as np
 
