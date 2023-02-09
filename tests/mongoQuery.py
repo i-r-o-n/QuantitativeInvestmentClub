@@ -1,7 +1,7 @@
 import pymongo
 
-username = 'johnstreetcapital'
-password = 'OJRpUn4mtBxi51Oq'
+username = ''
+password = ''
 
 def mongo_call(input):
     client = pymongo.MongoClient(f"mongodb+srv://{username}:{password}@testcluster.yxijioi.mongodb.net/?retryWrites=true&w=majority")
