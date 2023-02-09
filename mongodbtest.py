@@ -1,15 +1,18 @@
+import pymongo
 
-from pymongo import MongoClient
+username = 'johnstreetcapital'
 password = 'OJRpUn4mtBxi51Oq'
-client = MongoClient(f'mongodb+srv://johnstreetcapital:<{password}>@testcluster.yxijioi.mongodb.net/?retryWrites=true&w=majority')
 
-db = client.sample_mflix
-movies = db['movies']
+def mongo_call(input):
+    client = pymongo.MongoClient(f"mongodb+srv://{username}:{password}@testcluster.yxijioi.mongodb.net/?retryWrites=true&w=majority")
+    db = client['sample_mflix']
+    movies = db['movies']
+    docs = movies.find_one({"title" : input})
+    print(docs)
 
-#query document
-uin = input('which movie do you want to search?')
+def main():
+    uin = input('query: ')
+    mongo_call(uin)
 
-#query
-query = {'title': uin}
-print(movies.find_one(query))
-print('done')
+if __name__ == '__main__':
+    main()
