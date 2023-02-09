@@ -1,6 +1,6 @@
 import requests
 import json
-url = "https://data.mongodb-api.com/app/data-phtlr/endpoint/data/v1/action/findOne"
+url = ""
 
 payload = json.dumps({
     "collection": "companies",
@@ -13,7 +13,7 @@ payload = json.dumps({
 headers = {
   'Content-Type': 'application/json',
   'Access-Control-Request-Headers': '*',
-  'api-key': '52iCIhtTWfqdy5q7goZdmirF2MjAUVlBha5pL4qngvwEG8IJ4gxJDmB7flPRuZOT', 
+  'api-key': '', 
 }
 
 response = requests.request("POST", url, headers=headers, data=payload)
