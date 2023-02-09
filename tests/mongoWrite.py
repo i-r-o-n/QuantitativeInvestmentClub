@@ -2,8 +2,8 @@ import pymongo
 from bson.objectid import ObjectId
 import datetime
 
-username = ''
-password = ''
+username = 'johnstreetcapital'
+password = 'OJRpUn4mtBxi51Oq'
 client = pymongo.MongoClient(f"mongodb+srv://{username}:{password}@testcluster.yxijioi.mongodb.net/?retryWrites=true&w=majority")
 db = client['companyBalanceSheet']
 companies = db['companies']
@@ -19,9 +19,9 @@ def mongoQuery(query):
 
 def main():
 
-    post = {"name": "microsoft",
+    post = {"name": "zim",
             "industry": ['technology', 'consumer electronics'],
-            "cashflow": 700000,
+            "cashflow": -100000,
             "lastUpdate": datetime.datetime.utcnow()}
 
     mongoQuery(mongoPost(post))
