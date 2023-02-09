@@ -2,8 +2,8 @@ import pymongo
 from bson.objectid import ObjectId
 import datetime
 
-username = 'johnstreetcapital'
-password = 'OJRpUn4mtBxi51Oq'
+username = ''
+password = ''
 client = pymongo.MongoClient(f"mongodb+srv://{username}:{password}@testcluster.yxijioi.mongodb.net/?retryWrites=true&w=majority")
 db = client['companyBalanceSheet']
 companies = db['companies']
