@@ -1,6 +1,6 @@
 import requests
 import json
-url = ''
+url = ""
 
 payload = json.dumps({
     "collection": "companies",
