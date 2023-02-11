@@ -1,5 +1,3 @@
-# !/Users/benwintraub/Desktop/finance/yahoo/bin/python3
-
 import yahooquery
 import pprint
 
