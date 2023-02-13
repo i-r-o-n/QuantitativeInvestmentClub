@@ -57,4 +57,4 @@ animator = ani.FuncAnimation(fig, bar, interval = 10)
 
 plt.show()
 
-# animator.save('aapl_2022.gif')
+# animator.save('./videos/aapl_2022.gif')
