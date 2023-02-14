@@ -19,7 +19,7 @@ def dfProcess(df):
 
 def dfPlot(dfDate):
     #apply a trendline to moving average that goes beyon the given interval
-    z = np.polyfit(dfDate.index.to_julian_date(), dfDate['SMA30'], 3)
+    z = np.polyfit(dfDate.index.to_julian_date(), dfDate['SMA30'], 1)
     p = np.poly1d(z)
     dfDate['Trendline'] = p(dfDate.index.to_julian_date())
     dfDate[['close', 'SMA30', 'Trendline']].plot(label='RELIANCE', figsize=(16, 8))
