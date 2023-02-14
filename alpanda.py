@@ -7,6 +7,7 @@ import matplotlib.animation as ani
 import matplotlib.ticker as mtick
 import matplotlib.dates as mdates
 import numpy as np
+import time
 
 # API Stuff
 ALPACA_KEY_ID = paper_account['api_key']
@@ -32,15 +33,18 @@ last_year = dt.datetime(2022, 2, 11, tzinfo=PST)
 # price_from_start_date(last_year)['close'].to_csv('AAPL_closing_price.csv')
 
 # Reading from CSV
-df1 = pd.read_csv('AAPL_closing_price.csv', index_col='timestamp')
+df1 = pd.read_csv('AAPL_closing_price.csv', index_col='timestamp', parse_dates=True)
 
 roll = 8
 df1['SMA'] = df1['close'].shift(-roll//2).rolling(roll).mean()
-df1.dropna(inplace=True)
+# df1.dropna(inplace=True)
+
+x_nums = pd.to_datetime(df1.index).astype(int) / 10**9
+# print(x_nums[0], type(x_nums[0]))
+x_dates = mdates.date2num(df1.index)
 
 
 # Parameters for the plot
-color = 'red'
 fig, ax = plt.subplots()
 plt.xticks(rotation=45, ha="right", rotation_mode="anchor") #rotate the x-axis values
 ax.yaxis.set_major_formatter(mtick.FormatStrFormatter("$%.0f"))
@@ -52,14 +56,19 @@ plt.style.use('default')
 
 # Plot function to animate
 def bar(i):
-	plt.legend(df1.columns)
-	plt.plot(df1['close'][:i], c='blue')
+	# plt.plot(df1['close'][:i], c='blue')
 	plt.plot(df1['SMA'][:i], c='orange')
-	# print(df1.index.to_julian_date()[:5], type(df1.index.to_julian_date()))
+	if i % 25 == 0 and i != 0:
+		try:
+			trend = np.polyfit(x_nums[i-roll:i], df1['SMA'].to_list()[i-roll:i], 1)
+			p = np.poly1d(trend) 
+			plt.plot(x_dates[i-2:i+10], p(x_nums[i-2:i+10]), c='red')
+		except:
+			pass
 
 # Creating the graph
 animator = ani.FuncAnimation(fig, bar, interval = 10)
-
-plt.show()
+# plt.show()
 
 # animator.save('./videos/aapl_2022.gif')
+animator.save('./videos/aapl_trendline.gif')
