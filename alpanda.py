@@ -32,7 +32,7 @@ last_year = dt.datetime(2022, 2, 11, tzinfo=PST)
 # price_from_start_date(last_year)['close'].to_csv('AAPL_closing_price.csv')
 
 # Reading from CSV
-df1 = pd.read_csv('AAPL_closing_price.csv', index_col='timestamp', parse_dates=True)
+df1 = pd.read_csv('AAPL_closing_price.csv', index_col='timestamp')
 
 roll = 8
 df1['SMA'] = df1['close'].shift(-roll//2).rolling(roll).mean()
@@ -56,12 +56,6 @@ def bar(i):
 	plt.plot(df1['close'][:i], c='blue')
 	plt.plot(df1['SMA'][:i], c='orange')
 	# print(df1.index.to_julian_date()[:5], type(df1.index.to_julian_date()))
-	if i != 0:
-		z = np.polyfit(df1.index.to_julian_date()[:i], df1['SMA'][:i], 1)
-		p = np.poly1d(z)
-		pl = p(df1.index.to_julian_date()[i:i+20])
-		print(df1)
-		plt.plot(df1.index[i:i+20], pl, c='red')
 
 # Creating the graph
 animator = ani.FuncAnimation(fig, bar, interval = 10)
