@@ -2,6 +2,7 @@ import alpaca_backtrader_api as alpaca
 import backtrader as bt
 import pytz
 from datetime import datetime
+from alpaca_account import paper_account
 
 ALPACA_KEY_ID = paper_account['api_key']
 ALPACA_SECRET_KEY = paper_account['api_secret']
@@ -10,9 +11,10 @@ ALPACA_PAPER = True
 fromdate = datetime(2020,8,5)
 todate = datetime(2020,8,10)
 
-tickers = ['AAPL']
+tickers = ['AAPL', 'MSFT']
 timeframes = {
     '2H':120,
+    '5H':300
 }
 
 class RSIStack(bt.Strategy):
@@ -29,8 +31,8 @@ class RSIStack(bt.Strategy):
 
 cerebro = bt.Cerebro()
 cerebro.addstrategy(RSIStack)
-cerebro.broker.setcash(100000)
-cerebro.broker.setcommission(commission=0.0)
+# cerebro.broker.setcash(100000)
+# cerebro.broker.setcommission(commission=0.0)
 
 store = alpaca.AlpacaStore(
     key_id=ALPACA_KEY_ID,
