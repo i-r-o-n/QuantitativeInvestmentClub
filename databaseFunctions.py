@@ -11,6 +11,20 @@ database = ''
 collection = ''
 '''
 
+def companyPost(ticker, sector, industry, eps): 
+    '''
+    This function defines the data structure for a company document.
+    '''
+    post = {
+        "ticker": ticker,
+        "sector":sector,
+        "industry": industry,
+        "eps": eps
+    }
+
+    mongoPost(post)
+    return print(f'posted {ticker} to {database}')
+
 def mongoPost(post):
     '''
     This function takes a dictionary as an argument and inserts it into the database.
